@@ -7,9 +7,10 @@ with oldest modification time are deleted first.
 
 positional arguments:
   dir         root directory
-  bytes       threshold size in bytes
+  bytes       threshold size in gigabytes
 
 optional arguments:
   -h, --help  show this help message and exit
   --delete    perform delete (default: print files to be deleted)
   ```
+Original version: https://github.com/aus/dirclean
