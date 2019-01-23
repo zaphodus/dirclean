@@ -29,7 +29,7 @@ def delete(files, delete=False):
 def main():
     parser = argparse.ArgumentParser(description='Recursively delete files until dir size is less than threshold size. Files with oldest modification time are deleted first.')
     parser.add_argument('directory', metavar='dir', action="store", help="root directory")
-    parser.add_argument('threshold', metavar='bytes', action="store", type=int, help="threshold size in gigabytes")
+    parser.add_argument('threshold', metavar='gigabytes', action="store", type=int, help="threshold size in gigabytes")
     parser.add_argument('--delete', action="store_true", default=False, help="perform delete (default: print files to be deleted)")
     
     args = parser.parse_args()
