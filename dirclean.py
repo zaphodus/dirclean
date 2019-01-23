@@ -3,6 +3,8 @@
 from os import scandir, unlink
 import argparse
 
+multiplier=1024*1024*1024
+
 def scantree(path):
     """Recursively yield DirEntry objects for files in a given directory."""
     for entry in scandir(path):
@@ -24,13 +26,13 @@ def delete(files, delete=False):
 def main():
     parser = argparse.ArgumentParser(description='Recursively delete files until dir size is less than threshold size. Files with oldest modification time are deleted first.')
     parser.add_argument('directory', metavar='dir', action="store", help="root directory")
-    parser.add_argument('threshold', metavar='bytes', action="store", type=int, help="threshold size in bytes")
+    parser.add_argument('threshold', metavar='bytes', action="store", type=int, help="threshold size in gigabytes")
     parser.add_argument('--delete', action="store_true", default=False, help="perform delete (default: print files to be deleted)")
     
     args = parser.parse_args()
 
     tree_files = scantree(args.directory)
-    threshold = args.threshold
+    threshold = args.threshold*multiplier
 
     # sort files by mtime. oldest first.
     tree_files = sorted(tree_files, key=lambda f: f.stat().st_mtime)
@@ -39,8 +41,8 @@ def main():
 
     delete_files = []
 
-    print("tree size: %d bytes" % tree_size)
-    print("threshold: %d bytes" % threshold)
+    print("tree size: %d bytes" % (tree_size/multiplier))
+    print("threshold: %d bytes" % (threshold/multiplier))
     
     for f in tree_files:
         if tree_size < threshold:
