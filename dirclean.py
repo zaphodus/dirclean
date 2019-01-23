@@ -44,8 +44,8 @@ def main():
 
     delete_files = []
 
-    print("tree size: %d bytes" % (tree_size/multiplier))
-    print("threshold: %d bytes" % (threshold/multiplier))
+    print("tree size: %d gigabytes" % (tree_size/multiplier))
+    print("threshold: %d gigabytes" % (threshold/multiplier))
     
     for f in tree_files:
         if tree_size < threshold:
