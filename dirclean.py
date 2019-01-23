@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# Original version: https://github.com/aus/dirclean
+
 from os import scandir, unlink
 import argparse
 
